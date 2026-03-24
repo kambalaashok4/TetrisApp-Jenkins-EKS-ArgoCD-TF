@@ -73,6 +73,15 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Verify token was generated
+        run: |
+          if [ -z "${{ steps.app-token.outputs.token }}" ]; then
+            echo "========>   ${{ steps.app-token.outputs.token }}"
+            echo "❌ Token is empty — app-token step failed"
+            exit 1
+          else
+            echo "✅ Token generated successfully"
+          fi
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
