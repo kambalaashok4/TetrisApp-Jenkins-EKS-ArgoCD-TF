@@ -70,7 +70,7 @@ jobs:
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
-          repository: https://github.com/kambalaashok4/ci-cd-django-jenkins.git   # change this
+          repository: kambalaashok4/ci-cd-django-jenkins   # change this
           #token: ${{ secrets.GITOPS_PAT }}
 
       - name: Update image tag
