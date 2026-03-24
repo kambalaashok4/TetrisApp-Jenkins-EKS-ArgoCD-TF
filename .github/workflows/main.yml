@@ -76,10 +76,10 @@ jobs:
       - name: Verify token was generated
         run: |
           if [ -z "${{ steps.app-token.outputs.token }}" ]; then
-            echo "========>   ${{ steps.app-token.outputs.token }}"
             echo "❌ Token is empty — app-token step failed"
             exit 1
           else
+          echo "========>   ${{ steps.app-token.outputs.token }}"
             echo "✅ Token generated successfully"
           fi
       - name: Checkout GitOps repo
