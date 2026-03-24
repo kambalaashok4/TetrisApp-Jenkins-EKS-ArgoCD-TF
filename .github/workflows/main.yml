@@ -67,11 +67,18 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+      - name: genetate  GitHub app token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GITHUB_APP_ID }}
+          private-key: ${{ secrets.GITHUB_APP_PRIVATE_KEY }}
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
           repository: kambalaashok4/TetrisApp-Jenkins-EKS-ArgoCD-TF   # change this
-          #token: ${{ secrets.GITOPS_PAT }}
+          token: ${{ steps.app-token.outputs.token }}
+           
 
       - name: Update image tag
         run: |
