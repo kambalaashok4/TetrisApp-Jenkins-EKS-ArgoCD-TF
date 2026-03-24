@@ -57,8 +57,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: Tetries-V2
-          file: Tetries-V2/Dockerfile
+          context: Tetris-V2
+          file: Tetris-V2/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
