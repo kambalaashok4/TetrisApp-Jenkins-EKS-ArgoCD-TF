@@ -101,4 +101,4 @@ jobs:
           git config user.email " kambalaashok4@gmail.com"
           git add k8s/deployment.yaml
           git commit -m "chore: update image tag to ${{ needs.build-and-push.outputs.image_tag }}"
-          git push
+          git push origin main
