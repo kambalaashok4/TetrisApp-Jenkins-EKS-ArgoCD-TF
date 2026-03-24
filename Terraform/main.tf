@@ -123,5 +123,5 @@ resource "aws_internet_gateway" "eks_igw" {
 
 
 
-
+##removed
 
