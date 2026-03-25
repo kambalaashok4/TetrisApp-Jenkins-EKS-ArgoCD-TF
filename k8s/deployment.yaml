@@ -14,7 +14,7 @@ spec:
         app: tetries-app
     spec:
       containers:
-        - name: tetries-app
+        - name: your-app
           image: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:latest
           ports:
             - containerPort: 8080
