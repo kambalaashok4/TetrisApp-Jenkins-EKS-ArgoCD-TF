@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: your-app
-          image: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:sha-7d4ce8c
+          image: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:sha-a8fc66a
           ports:
             - containerPort: 8080
           resources:
