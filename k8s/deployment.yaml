@@ -5,7 +5,7 @@ metadata:
   name: tetries-app
   namespace: tetris
 spec:
-  replicas: 1
+
   selector:
     matchLabels:
       app: tetries-app
