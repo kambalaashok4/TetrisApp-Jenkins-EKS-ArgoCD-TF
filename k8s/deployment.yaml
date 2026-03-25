@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tetries-app
-  namespace: Tetries
+  namespace: tetries
 spec:
   replicas: 1
   selector:
@@ -14,7 +14,7 @@ spec:
         app: tetries-app
     spec:
       containers:
-        - name: your-app
+        - name: tetries-app
           image: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:sha-e84edd5
           ports:
             - containerPort: 8080
