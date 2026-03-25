@@ -5,7 +5,7 @@ metadata:
   name: tetries-app
   namespace: tetris
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: tetries-app
@@ -40,3 +40,24 @@ spec:
     port: 80
     targetPort: 3000
   type: LoadBalancer
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: tetries-hpa
+  namespace: tetris
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: tetries-app
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
