@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/**'
+      # - '.github/workflows/**'
       - 'k8s/**'
     branches: [main]
 permissions:
@@ -73,7 +73,7 @@ jobs:
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ steps.build-and-push.outputs.image_tag }}
+          image-ref: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:${{ needs.build-and-push.outputs.image_tag }}
           format: 'table'
           exit-code: '1'
           severity: 'CRITICAL'
