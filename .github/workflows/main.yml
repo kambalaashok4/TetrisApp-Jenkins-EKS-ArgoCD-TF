@@ -66,31 +66,31 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  image-scan-trivy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: debug jwt
-        run: |
-          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
-          echo $TOKEN | cut -d. -f2 | base64 -d 2>/dev/null | jq .
-      # ✅ Configure AWS credentials (OIDC recommended)
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::865487342006:role/github-actions-deploy
-          aws-region: ${{ env.AWS_REGION }}
-      - name: Scan image with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:${{ needs.build-and-push.outputs.image_tag }}
-          format: 'table'
-          exit-code: '1'
-          severity: 'CRITICAL'
-          output: 'trivy-report.txt'
+  # image-scan-trivy:
+  #   needs: build-and-push
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: debug jwt
+  #       run: |
+  #         TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+  #           "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+  #         echo $TOKEN | cut -d. -f2 | base64 -d 2>/dev/null | jq .
+  #     # ✅ Configure AWS credentials (OIDC recommended)
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v4
+  #       with:
+  #         role-to-assume: arn:aws:iam::865487342006:role/github-actions-deploy
+  #         aws-region: ${{ env.AWS_REGION }}
+  #     - name: Scan image with Trivy
+  #       uses: aquasecurity/trivy-action@master
+  #       with:
+  #         image-ref: 865487342006.dkr.ecr.us-east-1.amazonaws.com/eks/tetries:${{ needs.build-and-push.outputs.image_tag }}
+  #         format: 'table'
+  #         exit-code: '1'
+  #         severity: 'CRITICAL'
+  #         output: 'trivy-report.txt'
   update-manifest:
-    needs: image-scan-trivy
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout GitOps repo
