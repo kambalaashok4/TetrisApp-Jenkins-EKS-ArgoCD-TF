@@ -65,8 +65,8 @@ jobs:
       #       ${{ runner.os }}-npm-
 
       # - name: Install dependencies
-      #   run: npm ci
-      - name: Set up Docker Buildx
+      #   run: npm ci    
+      - name: Set up Docker Buildxx
         uses: docker/setup-buildx-action@v3
       # ✅ Build & Push to ECR
       - name: Build and push Docker image
