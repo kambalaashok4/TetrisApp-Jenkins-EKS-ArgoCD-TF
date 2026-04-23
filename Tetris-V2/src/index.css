@@ -13,7 +13,7 @@ html {
 body {
 	height: 100%;
 	position: fixed;
-	/* prevent overscroll bounce*/
+	/* prevent overscroll bounce           */
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 }
