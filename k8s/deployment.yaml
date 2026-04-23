@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tetries-app
-          image: 870388460414.dkr.ecr.us-east-1.amazonaws.com/eks/profile:sha-4e7c30e
+          image: 870388460414.dkr.ecr.us-east-1.amazonaws.com/eks/profile:sha-9cc513d
           ports:
             - containerPort: 3000
           resources:
